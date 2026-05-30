@@ -116,11 +116,39 @@ sed -i 's/changeme/你的密码/' config.toml
 ```bash
 # 安装 cargo-zigbuild
 cargo install cargo-zigbuild
+```
 
-# 编译 Linux ARM64 (OpenWrt)
+### Linux (glibc)
+
+```bash
+# x86_64 Linux
+cargo zigbuild --release --target x86_64-unknown-linux-gnu
+
+# ARM64 Linux
+cargo zigbuild --release --target aarch64-unknown-linux-gnu
+```
+
+### 兼容低版本 Linux
+
+通过指定 glibc 版本，确保在旧系统上也能运行：
+
+```bash
+# x86_64，兼容 glibc 2.17（CentOS 7 / Ubuntu 16.04）
+cargo zigbuild --release --target x86_64-unknown-linux-gnu.2.17
+
+# ARM64，兼容 glibc 2.17
+cargo zigbuild --release --target aarch64-unknown-linux-gnu.2.17
+```
+
+### OpenWrt (musl)
+
+OpenWrt 使用 musl libc，需要静态链接：
+
+```bash
+# ARM64 OpenWrt
 cargo zigbuild --release --target aarch64-unknown-linux-musl
 
-# 编译 Linux x86_64
+# x86_64 OpenWrt
 cargo zigbuild --release --target x86_64-unknown-linux-musl
 ```
 
