@@ -2,6 +2,8 @@
 
 基于 Rust + Axum 构建的 AdGuard VPN CLI 的 Web 管理界面。提供简洁的 Web 界面来管理 AdGuard VPN 连接状态。
 
+> 本项目由 Claude Code 通过 qwen3.7-max 开发。
+
 ## 功能特性
 
 - 🔐 密码认证登录
