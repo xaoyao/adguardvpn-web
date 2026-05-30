@@ -1,0 +1,17 @@
+[Unit]
+Description=AdGuard VPN Web Controller
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/adguardvpn-web
+ExecStart=/opt/adguardvpn-web/adguardvpn-web /opt/adguardvpn-web/config.toml
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=adguardvpn-web
+
+[Install]
+WantedBy=multi-user.target

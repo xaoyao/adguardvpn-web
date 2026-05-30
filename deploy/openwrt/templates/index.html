@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="vpn-panel">
+    <div class="status-section">
+        <h2>连接状态</h2>
+        <div
+            id="status"
+            hx-get="api/status"
+            hx-trigger="load, every 30s, locations-changed from:body"
+            hx-swap="innerHTML"
+        >
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+
+    <div class="locations-section">
+        <h2>可用位置</h2>
+        <table class="locations-table">
+            <thead>
+                <tr>
+                    <th>位置</th>
+                    <th>国家</th>
+                    <th>城市</th>
+                    <th>延迟</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody
+                id="locations"
+                hx-get="api/locations"
+                hx-trigger="load, locations-changed from:body"
+                hx-swap="innerHTML"
+            >
+                <tr><td colspan="5" class="loading">加载中...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="logout-section">
+        <form method="post" action="logout">
+            <button type="submit" class="btn btn-secondary">退出登录</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
