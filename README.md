@@ -73,30 +73,36 @@ cargo build --release
 
 ### OpenWrt ARM64 部署
 
-项目提供预编译的 ARM64 版本（使用 musl libc，静态链接）：
+项目提供预编译的 ARM64 版本（使用 musl libc，静态链接），部署文件位于仓库的 `deploy/openwrt/` 目录：
 
 ```bash
-# 1. 下载部署包
-wget https://github.com/xaoyao/adguardvpn-web/releases/download/v0.1.0/adguardvpn-web-aarch64-openwrt.tar.gz
+# 1. 克隆仓库
+git clone https://github.com/xaoyao/adguardvpn-web.git
+cd adguardvpn-web/deploy/openwrt
 
-# 2. 解压
-tar -xzf adguardvpn-web-aarch64-openwrt.tar.gz
-cd adguardvpn-web-aarch64-openwrt
-
-# 3. 修改密码
+# 2. 修改密码
 sed -i 's/changeme/你的密码/' config.toml
 
-# 4. 启动服务
+# 3. 启动服务
 ./vpn.sh start
 
-# 5. 查看状态
+# 4. 查看状态
 ./vpn.sh status
 
-# 6. 查看日志
+# 5. 查看日志
 ./vpn.sh log
 
-# 7. 停止服务
+# 6. 停止服务
 ./vpn.sh stop
+```
+
+或者直接下载所需文件：
+
+```bash
+wget https://raw.githubusercontent.com/xaoyao/adguardvpn-web/master/deploy/openwrt/adguardvpn-web
+wget https://raw.githubusercontent.com/xaoyao/adguardvpn-web/master/deploy/openwrt/vpn.sh
+wget https://raw.githubusercontent.com/xaoyao/adguardvpn-web/master/deploy/openwrt/config.toml
+chmod +x adguardvpn-web vpn.sh
 ```
 
 管理脚本 `vpn.sh` 支持以下命令：
